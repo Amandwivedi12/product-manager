@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function App() {
   // =========================
   // FORM STATES
@@ -36,7 +38,7 @@ function App() {
   const fetchProducts = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/products"
+        `${API_URL}/api/products`
       );
 
       const data = await response.json();
@@ -73,7 +75,7 @@ function App() {
 
       if (editingId) {
         const response = await fetch(
-          `http://localhost:5000/api/products/${editingId}`,
+          `${API_URL}/api/products/${editingId}`,
           {
             method: "PUT",
 
@@ -109,7 +111,7 @@ function App() {
 
       else {
         const response = await fetch(
-          "http://localhost:5000/api/products",
+          `${API_URL}/api/products`,
           {
             method: "POST",
 
@@ -173,7 +175,7 @@ function App() {
   const handleDelete = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/products/${id}`,
+        `${API_URL}/api/products/${id}`,
         {
           method: "DELETE",
         }
